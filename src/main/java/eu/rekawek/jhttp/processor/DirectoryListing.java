@@ -36,6 +36,7 @@ public class DirectoryListing implements RequestProcessor {
             Files.list(directory)
                 .map(Path::getFileName)
                 .map(Path::toString)
+                .sorted()
                 .forEach(s -> appendLink(s, uri, writer));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
