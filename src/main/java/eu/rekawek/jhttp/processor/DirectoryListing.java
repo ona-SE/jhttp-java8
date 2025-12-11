@@ -44,6 +44,6 @@ public class DirectoryListing implements RequestProcessor {
     }
 
     private void appendLink(String fileName, String uri, PrintWriter writer) {
-        writer.append(String.format("<li>\n<a href=\"%s/%s\">%s</a>\n</li>\n", uri, fileName, fileName));
+        writer.append("<li>\n<a href=\"%s/%s\">%s</a>\n</li>\n".formatted(uri, fileName, fileName));
     }
 }

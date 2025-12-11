@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class StaticFileTest {
         responseOutput = new ByteArrayOutputStream();
 
         request = mock(HttpRequest.class);
-        when(request.resolvePath()).thenReturn(Paths.get(STATIC_FILE.toURI()));
+        when(request.resolvePath()).thenReturn(Path.of(STATIC_FILE.toURI()));
 
         response = mock(HttpResponse.class);
         when(response.getOutputStream()).thenReturn(responseOutput);
@@ -40,7 +40,7 @@ public class StaticFileTest {
     public void testIndexHtml() throws IOException, URISyntaxException {
         assertTrue(new StaticFile().process(request, response));
         final ByteArrayOutputStream expected = new ByteArrayOutputStream();
-        Files.copy(Paths.get(STATIC_FILE.toURI()), expected);
+        Files.copy(Path.of(STATIC_FILE.toURI()), expected);
         assertEquals(new String(expected.toByteArray()), new String(responseOutput.toByteArray()));
     }
 

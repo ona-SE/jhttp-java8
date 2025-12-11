@@ -48,6 +48,6 @@ public class Header {
 
     @Override
     public String toString() {
-        return String.format("%s: %s", name, StringUtils.defaultString(value));
+        return "%s: %s".formatted(name, StringUtils.defaultString(value));
     }
 }

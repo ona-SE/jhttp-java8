@@ -2,7 +2,7 @@ package eu.rekawek.jhttp.server;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 
 import org.junit.Test;
 
@@ -24,6 +24,6 @@ public class SocketHttpRequestTest {
         final Socket socket = mock(Socket.class);
         when(socket.getInputStream()).thenReturn(
                 SocketHttpRequestTest.class.getResourceAsStream(requestFilePath));
-        return new SocketHttpRequest(socket, new PathResolver(Paths.get("/server/root")));
+        return new SocketHttpRequest(socket, new PathResolver(Path.of("/server/root")));
     }
 }
