@@ -3,7 +3,7 @@ package eu.rekawek.jhttp.server;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
@@ -67,7 +67,7 @@ public class SocketHttpResponseTest {
         final Socket socket = mock(Socket.class);
         when(socket.getInputStream()).thenReturn(
                 SocketHttpResponseTest.class.getResourceAsStream("/response/request.txt"));
-        final HttpRequest request = new SocketHttpRequest(socket, new PathResolver(Paths.get("/server/root")));
+        final HttpRequest request = new SocketHttpRequest(socket, new PathResolver(Path.of("/server/root")));
         when(socket.getOutputStream()).thenReturn(bos);
         return new SocketHttpResponse(socket, request);
     }

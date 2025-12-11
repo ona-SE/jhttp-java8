@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -27,7 +27,7 @@ public class HttpClientTest {
 
     private final HttpClient client = HttpClientBuilder.create().build();
 
-    private final HttpServer server = new HttpServer(Paths.get("src/test/resources/http-server/server-root"),
+    private final HttpServer server = new HttpServer(Path.of("src/test/resources/http-server/server-root"),
             0, 1);
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
