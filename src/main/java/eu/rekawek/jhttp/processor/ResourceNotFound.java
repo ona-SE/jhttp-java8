@@ -23,7 +23,7 @@ public class ResourceNotFound implements RequestProcessor {
             return false;
         }
         response.setStatus(HTTP_PAGE_NOT_FOUND_STATUS, "File not found");
-        response.getPrintWriter().println(String.format("File %s can't be found.", request.getUri()));
+        response.getPrintWriter().println("File %s can't be found.".formatted(request.getUri()));
         return true;
     }
 }

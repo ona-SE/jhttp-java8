@@ -1,7 +1,7 @@
 package eu.rekawek.jhttp;
 
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -39,7 +39,7 @@ public final class Main {
         final int threadPoolSize = getIntValue(cmdLine, 't', DEFAULT_THREAD_POOL_SIZE);
         final String serverRoot = getValue(cmdLine, 'r', DEFAULT_SERVER_ROOT);
 
-        final HttpServer server = new HttpServer(Paths.get(serverRoot), port, threadPoolSize);
+        final HttpServer server = new HttpServer(Path.of(serverRoot), port, threadPoolSize);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> server.stop()));
         server.start();
     }
@@ -49,21 +49,21 @@ public final class Main {
         final Options options = new Options();
         options.addOption(OptionBuilder
                 .withLongOpt("port")
-                .withDescription(String.format("port to listen (default: %d)", DEFAULT_PORT))
+                .withDescription("port to listen (default: %d)".formatted(DEFAULT_PORT))
                 .hasArg()
                 .withArgName("PORT")
                 .withType(Number.class)
                 .create('p'));
         options.addOption(OptionBuilder
                 .withLongOpt("threads")
-                .withDescription(String.format("thread pool size (default: %d)", DEFAULT_THREAD_POOL_SIZE))
+                .withDescription("thread pool size (default: %d)".formatted(DEFAULT_THREAD_POOL_SIZE))
                 .hasArg()
                 .withArgName("THREADS_NO")
                 .withType(Number.class)
                 .create('t'));
         options.addOption(OptionBuilder
                 .withLongOpt("root")
-                .withDescription(String.format("server root directory (default: '%s')", DEFAULT_SERVER_ROOT))
+                .withDescription("server root directory (default: '%s')".formatted(DEFAULT_SERVER_ROOT))
                 .hasArg()
                 .withArgName("DIR")
                 .withType(Number.class)

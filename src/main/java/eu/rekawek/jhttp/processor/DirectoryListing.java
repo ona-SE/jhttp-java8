@@ -36,6 +36,7 @@ public class DirectoryListing implements RequestProcessor {
             Files.list(directory)
                 .map(Path::getFileName)
                 .map(Path::toString)
+                .sorted()
                 .forEach(s -> appendLink(s, uri, writer));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -44,6 +45,6 @@ public class DirectoryListing implements RequestProcessor {
     }
 
     private void appendLink(String fileName, String uri, PrintWriter writer) {
-        writer.append(String.format("<li>\n<a href=\"%s/%s\">%s</a>\n</li>\n", uri, fileName, fileName));
+        writer.append("<li>\n<a href=\"%s/%s\">%s</a>\n</li>\n".formatted(uri, fileName, fileName));
     }
 }
