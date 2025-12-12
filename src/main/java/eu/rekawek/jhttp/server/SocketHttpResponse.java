@@ -103,7 +103,7 @@ public class SocketHttpResponse implements HttpResponse {
         }
         commited = true;
         final PrintWriter writer = new PrintWriter(outputStream);
-        writer.println(String.format("%s %d %s", httpVersion, statusCode, statusMessage));
+        writer.println("%s %d %s".formatted(httpVersion, statusCode, statusMessage));
         headerList.getHeaders().stream().forEach(writer::println);
         writer.println();
         writer.flush();

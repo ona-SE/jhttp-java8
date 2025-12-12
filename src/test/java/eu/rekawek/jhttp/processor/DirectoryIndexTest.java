@@ -13,7 +13,8 @@ import org.junit.Test;
 import eu.rekawek.jhttp.api.HttpRequest;
 import eu.rekawek.jhttp.api.HttpResponse;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class DirectoryIndexTest {
 
